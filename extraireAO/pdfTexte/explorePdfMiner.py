@@ -99,7 +99,8 @@ with open('Transforme.csv', 'w') as csvfile :
         
         
 from extraireAO.pdfTexte.document import *
-d = Document("Sources/700 001 429 Gestion de projets.pdf")
+#d = Document("Sources/700 001 429 Gestion de projets.pdf")
+d = Document("Sources/AO_RQ_445006491_RTPE-TI.pdf")
 d.obtientSection(d.table[1])
 
 
