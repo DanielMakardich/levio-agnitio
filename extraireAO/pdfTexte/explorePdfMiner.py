@@ -98,27 +98,16 @@ with open('Transforme.csv', 'w') as csvfile :
         writer.writerow(ligne);
         
         
-        
+from extraireAO.pdfTexte.document import *
+d = Document("Sources/700 001 429 Gestion de projets.pdf")
+TM = d.extraitTableMatières();
 
-def chargeFichier(pFichier) :
-        fp = open('{0}'.format(pFichier), 'rb')
-        parser = PDFParser(fp)
-        document = PDFDocument(parser)
-        if not document.is_extractable:
-            raise PDFTextExtractionNotAllowed
-            
-        ressources = PDFResourceManager()
-        
-        laparams = LAParams()
-        device = PDFPageAggregator(ressources, laparams=laparams)
-        interpreter = PDFPageInterpreter(ressources, device)
-        
-        for i, page in enumerate(PDFPage.create_pages(document)) :
-            interpreter.process_page(page)
-            layout = device.get_result()
-            for element in layout:
-                print("Type élément : ",  type(element) );
-                if isinstance(element, LTTextBoxHorizontal) :
-                    print(element.get_text())
+for paragraphe in d.texte :
+   #print("\n", paragraphe);
+   for entrée in TM :
+      #if entrée["hash"] == 'DESCRIPTIONDESBESOINS' :
+      #    print("    {0:<50} | {1:<50}".format(entrée["hash"], d.hash(paragraphe)));
+      if entrée["hash"] == d.hash(paragraphe) :
+         print(paragraphe);
+         break;
 
-chargeFichier("Sources/700 001 429 Gestion de projets.pdf");
