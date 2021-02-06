@@ -100,14 +100,6 @@ with open('Transforme.csv', 'w') as csvfile :
         
 from extraireAO.pdfTexte.document import *
 d = Document("Sources/700 001 429 Gestion de projets.pdf")
-TM = d.table
+d.obtientSection(d.table[1])
 
-for entrée in TM :
-    nbTrouvé = 0;
-    
-    for no, paragraphe in enumerate(d.texte) :
-      if entrée["hash"] == d.hash(paragraphe) :
-         print(paragraphe);
-         nbTrouvé += 1;
-         if nbTrouvé 
 

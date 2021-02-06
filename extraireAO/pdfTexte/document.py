@@ -129,13 +129,16 @@ class Document :
         
     def obtientSection(self, entréeTableMatière) :
         """
-            Retourne le texte de la section indiquée par une entrée de la table des matières
+            Retourne le "texte" de la section indiquée par une entrée de la table des matières
         """
         sectionSuivante = self.table[entréeTableMatière["no"] + 1];
         
         if len(entréeTableMatière["emplacements"]) > 0 and len(sectionSuivante["emplacements"]) > 0 :
             maxEntréeDébut = self._trouveMaxEmplacement(entréeTableMatière);
             maxEntréeFin = self._trouveMaxEmplacement(sectionSuivante);
-            return(self.texte[maxEntréeDébut:maxEntréeFin])
+            texte = "";
+            for paragraphe in self.texte[maxEntréeDébut:maxEntréeFin] :
+                texte += paragraphe;
+            return(texte)
         else :
             return (None);
