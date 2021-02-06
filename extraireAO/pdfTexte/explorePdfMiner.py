@@ -1,5 +1,5 @@
 from pdfminer.pdfparser import PDFParser
-from pdfminer.pdfdocument import PDFDocument
+from pdfminer.pdfdocument import PDFDocument, PDFNoOutlines
 from pdfminer.pdfpage import PDFTextExtractionNotAllowed
 
 # -- Outils pour le scan du répertoire
