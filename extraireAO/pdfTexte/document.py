@@ -44,6 +44,8 @@ class Document :
             
         self.ressources = PDFResourceManager()
         self.hashIndex = list();
+        
+        # TODO : Extraire le dictionnaire des sections utiles...  Cela pourrait être une solution pour accroître la performance.
         self.texte = self.extraitTexte();
         self.table = self.extraitTableMatières();
     
