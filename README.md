@@ -8,8 +8,9 @@ pour ressortir les informations nécessaires
 Pile logicielle
 ===============
    1. Python
-   2.   - pdfminer ?
-   3.   - ...
+   2.   - pdfminer
+   3.   - ghostscript
+   4.   - 
    
 
 Instructions d'installation :
