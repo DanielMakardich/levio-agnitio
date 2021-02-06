@@ -96,3 +96,29 @@ with open('Transforme.csv', 'w') as csvfile :
     writer = csv.writer(csvfile, delimiter=";", quotechar = "\"");
     for ligne in sections :
         writer.writerow(ligne);
+        
+        
+        
+
+def chargeFichier(pFichier) :
+        fp = open('{0}'.format(pFichier), 'rb')
+        parser = PDFParser(fp)
+        document = PDFDocument(parser)
+        if not document.is_extractable:
+            raise PDFTextExtractionNotAllowed
+            
+        ressources = PDFResourceManager()
+        
+        laparams = LAParams()
+        device = PDFPageAggregator(ressources, laparams=laparams)
+        interpreter = PDFPageInterpreter(ressources, device)
+        
+        for i, page in enumerate(PDFPage.create_pages(document)) :
+            interpreter.process_page(page)
+            layout = device.get_result()
+            for element in layout:
+                print("Type élément : ",  type(element) );
+                if isinstance(element, LTTextBoxHorizontal) :
+                    print(element.get_text())
+
+chargeFichier("Sources/700 001 429 Gestion de projets.pdf");
