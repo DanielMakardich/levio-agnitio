@@ -21,12 +21,12 @@ def nettoieÉtiquette(pÉtiquette) :
         """
         chaîne = "";
         
-        pÉtiquette.replace(" et ", "");
-        for lettre in pÉtiquette :
+        chaîneNette = pÉtiquette.upper().replace(" ET ", "").replace("ANNEXE", "");
+        for lettre in chaîneNette :
             if lettre in string.ascii_letters :
                 chaîne += lettre.upper();
         if chaîne == '' :
-            return(pÉtiquette.strip().upper());
+            return(chaîneNette.strip().upper());
         return(chaîne);
 
 nbAvec = 0;
@@ -73,11 +73,26 @@ r = Référentiel();
 usage = "SectionAO";
 index = list(); # Liste des hash keys
 sections = list( ); # liste de dictionnaires
-sections.append(['Titre', 'hash', 'Référence', 'Exclu']);
+sections.append(['Titre', 'hash', 'Référence']);
 
 print("Résultat sur le contenu des tables des matières : {0} avec {1} sans".format(nbAvec, nbSans));
+for no, élément in enumerate(sans) :
+    try :
+        print(no);
+        tableMatières = élément["TableDesMatières"];
+        entrées = élément["Entrées"];
+        for entrée in entrées :
+            if entrée["hash"] not in index :
+                sections.append( [ entrée["title"], entrée["hash"], None ] );
+                index.append(entrée["hash"]);
+            #terme = r.retourneTerme(usage, entrée["hash"]);
+            #if terme is None :
+            #    r.ajouteTerme(entrée["hash"], usage, entrée["hash"]);
+            
+    except KeyError :
+        print("Sans tables : {0}".format(élément["fichier"]));
 
 with open('Transforme.csv', 'w') as csvfile :
-    writer = csv.writer(csvfile, delimiter=";", quotechar = '"');
+    writer = csv.writer(csvfile, delimiter=";", quotechar = "\"");
     for ligne in sections :
         writer.writerow(ligne);
