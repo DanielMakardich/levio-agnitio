@@ -2,10 +2,15 @@ from pdfminer.pdfparser import PDFParser
 from pdfminer.pdfdocument import PDFDocument, PDFNoOutlines
 from pdfminer.pdfpage import PDFTextExtractionNotAllowed
 
+from extraireAO.pdfTexte.référentiel import Référentiel
+
 # -- Outils pour le scan du répertoire
 import glob
 import os
 import string
+
+import json
+import csv
 
 listeFichiers = os.scandir("Sources");
 
@@ -51,6 +56,7 @@ for fichier in listeFichiers :
                 entrée = dict();
                 entrée["niveau"] = level;
                 entrée["title"] = title;
+                entrée["hash"] = nettoieÉtiquette(title);
                 entrée["dest"] = dest;
                 entrée["action"] = a;
                 entrée["se"] = se;
@@ -63,20 +69,15 @@ for fichier in listeFichiers :
             
             print("Fichier : {0}\n  Table de matières non trouvée".format(fichier));
         
-sections = list();
+r = Référentiel();
+usage = "SectionAO";
+index = list(); # Liste des hash keys
+sections = list( ); # liste de dictionnaires
+sections.append(['Titre', 'hash', 'Référence', 'Exclu']);
 
 print("Résultat sur le contenu des tables des matières : {0} avec {1} sans".format(nbAvec, nbSans));
-for no, élément in enumerate(sans) :
-    try :
-        print(no);
-        tableMatières = élément["TableDesMatières"];
-        titre = dict();
-        sections.append(titre);
-        for (level,title,dest,a,se) in tableMatières:
-            print("Avec tables : {0} : {1}".format(élément["fichier"], title));
-            titre["hash"] = nettoieÉtiquette(title);
-            titre["titre"] = title;
-        élément["Titres"] = titre;
-            
-    except KeyError :
-        print("Sans tables : {0}".format(élément["fichier"]));
+
+with open('Transforme.csv', 'w') as csvfile :
+    writer = csv.writer(csvfile, delimiter=";", quotechar = '"');
+    for ligne in sections :
+        writer.writerow(ligne);
