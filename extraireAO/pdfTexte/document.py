@@ -81,7 +81,12 @@ class Document :
                 entrée["dest"] = dest;
                 entrée["action"] = a;
                 entrée["se"] = se;
+                entrée["emplacements"] = list();
                 
+                for no, paragraphe in enumerate(self.texte) :
+                    if entrée["hash"] == self.hash(paragraphe) :
+                        entrée["emplacements"].append(no);
+                        
                 entrées.append(entrée);
         except PDFNoOutlines :
             entrées = None;
@@ -107,7 +112,30 @@ class Document :
                 if isinstance(element, LTTextBoxHorizontal) :
                     hâchage = self.hash(element.get_text());
                     if len(hâchage) > 0:
-                        texte.append(element.get_text())
+                        texte.append(element.get_text().replace("\n", ""))
                         if hâchage not in self.hashIndex :
                             self.hashIndex.append(hâchage);
         return(texte);
+        
+    def _trouveMaxEmplacement(self, entrée) :
+        """
+            Retourne la valeur maximale pour trouver l'emplacement de la section de l'entrée à la table des matières.
+        """
+        maxEntrée = 0;
+        for entrée in entréeTableMatière["emplacements"] :
+                if maxEntréeDébut < entrée :
+                    maxEntréeDébut = entrée
+        return(maxEntrée);
+        
+    def obtientSection(self, entréeTableMatière) :
+        """
+            Retourne le texte de la section indiquée par une entrée de la table des matières
+        """
+        sectionSuivante = entréeTableMatière["no"] + 1;
+        
+        if len(entréeTableMatière["emplacements"]) > 0 and len(sectionSuivante["emplacements"]) > 0 :
+            maxEntréeDébut = _trouveMaxEmplacement(entréeTableMatière["emplacements"]);
+            maxEntréeFin = _trouveMaxEmplacement(sectionSuivante["emplacements"]);
+            return(self.table[maxEntréeDébut:maxEntréeFin]
+        else :
+            return (None);

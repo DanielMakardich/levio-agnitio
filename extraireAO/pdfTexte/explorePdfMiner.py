@@ -100,14 +100,14 @@ with open('Transforme.csv', 'w') as csvfile :
         
 from extraireAO.pdfTexte.document import *
 d = Document("Sources/700 001 429 Gestion de projets.pdf")
-TM = d.extraitTableMatières();
+TM = d.table
 
-for paragraphe in d.texte :
-   #print("\n", paragraphe);
-   for entrée in TM :
-      #if entrée["hash"] == 'DESCRIPTIONDESBESOINS' :
-      #    print("    {0:<50} | {1:<50}".format(entrée["hash"], d.hash(paragraphe)));
+for entrée in TM :
+    nbTrouvé = 0;
+    
+    for no, paragraphe in enumerate(d.texte) :
       if entrée["hash"] == d.hash(paragraphe) :
          print(paragraphe);
-         break;
+         nbTrouvé += 1;
+         if nbTrouvé 
 
