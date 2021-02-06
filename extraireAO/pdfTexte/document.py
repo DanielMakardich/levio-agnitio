@@ -117,25 +117,25 @@ class Document :
                             self.hashIndex.append(hâchage);
         return(texte);
         
-    def _trouveMaxEmplacement(self, entrée) :
+    def _trouveMaxEmplacement(self, entréeChoisie) :
         """
             Retourne la valeur maximale pour trouver l'emplacement de la section de l'entrée à la table des matières.
         """
         maxEntrée = 0;
-        for entrée in entréeTableMatière["emplacements"] :
-                if maxEntréeDébut < entrée :
-                    maxEntréeDébut = entrée
+        for entrée in entréeChoisie["emplacements"] :
+                if maxEntrée < entrée :
+                    maxEntrée = entrée
         return(maxEntrée);
         
     def obtientSection(self, entréeTableMatière) :
         """
             Retourne le texte de la section indiquée par une entrée de la table des matières
         """
-        sectionSuivante = entréeTableMatière["no"] + 1;
+        sectionSuivante = self.table[entréeTableMatière["no"] + 1];
         
         if len(entréeTableMatière["emplacements"]) > 0 and len(sectionSuivante["emplacements"]) > 0 :
-            maxEntréeDébut = _trouveMaxEmplacement(entréeTableMatière["emplacements"]);
-            maxEntréeFin = _trouveMaxEmplacement(sectionSuivante["emplacements"]);
-            return(self.table[maxEntréeDébut:maxEntréeFin])
+            maxEntréeDébut = self._trouveMaxEmplacement(entréeTableMatière);
+            maxEntréeFin = self._trouveMaxEmplacement(sectionSuivante);
+            return(self.texte[maxEntréeDébut:maxEntréeFin])
         else :
             return (None);
