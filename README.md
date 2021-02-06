@@ -14,6 +14,12 @@ Pile logicielle
 
 Instructions d'installation :
 =============================
-1. python3 -m pip install --upgrade pip
-2. python3 -m pip install pdfminer
+1. Créer un répertoire sur votre ordinateur
+2. Installer github
+3. Dans le répertoire créer, lancer la commande
+      git clone https://github.com/DanielMakardich/levio-agnitio.git
+      ... (demander de l'aide)
+      
+3. python3 -m pip install --upgrade pip
+4. python3 -m pip install pdfminer
 
