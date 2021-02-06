@@ -11,3 +11,9 @@ Pile logicielle
    2.   - pdfminer ?
    3.   - ...
    
+
+Instructions d'installation :
+=============================
+1. python3 -m pip install --upgrade pip
+2. python3 -m pip install pdfminer
+
