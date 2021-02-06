@@ -136,6 +136,6 @@ class Document :
         if len(entréeTableMatière["emplacements"]) > 0 and len(sectionSuivante["emplacements"]) > 0 :
             maxEntréeDébut = _trouveMaxEmplacement(entréeTableMatière["emplacements"]);
             maxEntréeFin = _trouveMaxEmplacement(sectionSuivante["emplacements"]);
-            return(self.table[maxEntréeDébut:maxEntréeFin]
+            return(self.table[maxEntréeDébut:maxEntréeFin])
         else :
             return (None);
