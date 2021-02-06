@@ -23,3 +23,16 @@ Instructions d'installation :
 3. python3 -m pip install --upgrade pip
 4. python3 -m pip install pdfminer
 
+5. Installer ghostscript:
+   1. Pour Windows utiliser le lien suivant et choisir la version _Ghostscript AGPL Release_ qui convient pour votre OS:
+      * [ghostscript installer](https://www.ghostscript.com/download/gsdnld.html)
+   2. Pour Linux (Ubuntu) roulez la commande:
+      * _apt install ghostscript python3-tk_
+   3. Pour Mac roulez la commande:
+      * _brew install ghostscript tcl-tk_
+
+6. Installer ActivePython 3.8: 
+   * [ActivePython 3.8 installer](https://www.activestate.com/products/python/downloads/)
+7. Exécuter la commande: `excalibur initdb`
+8. Exécuter la commande: `excalibur webserver`
+9. Ouvrir l'application sur le web sur _http://localhost:5000_
