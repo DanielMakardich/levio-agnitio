@@ -108,4 +108,7 @@ from extraireAO.pdfTexte.dimension import *
 chargerDictionnaire(r, "Table des matières", "dictionnaires/table_des_matières.csv");
 r.enregistreJson()
 
+for entrée in d.table :
+   if entrée["étiquette"] is None :
+      print("   {0:>50} | {1:<50}".format(entrée["title"], entrée["hash"]))
 

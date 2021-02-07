@@ -89,6 +89,7 @@
                 "CAPACITDERPONDRELADEMANDE",
                 "CASDEREJETAUTOMATIQUE",
                 "CATTESTATIONDEDESTRUCTIONDESRENSEIGNEMENTSPERSONNELSCONFIDENTIELS",
+                "CATTESTATIONDEDESTRUCTIONDESRENSEIGNEMENTSPERSONNELSETCONFIDENTIELS",
                 "CAUTORISATIONPRALABLE",
                 "CCOMPUTATIONDESDLAIS",
                 "CCORRECTION",
@@ -118,6 +119,7 @@
                 "CONDITIONSGNRALES",
                 "CONDITIONSMODALITSDVALUATIONDELAQUALITDESSOUMISSIONS",
                 "CONDITIONSMODALITSDVALUATIONDELAQUALITENVUEDUNEADJUDICATIONSELONLEPRIXAJUSTLEPLUSBAS",
+                "CONDITIONSPRALABLESLADJUDICATIONETLACONCLUSIONDUCONTRAT",
                 "CONDITIONSPRALABLESLADJUDICATIONLACONCLUSIONDUCONTRAT",
                 "CONDUITE",
                 "CONFIDENTIALIT",
@@ -301,7 +303,9 @@
                 "JOURSHEURESDEDPT",
                 "LABORATIONDELASOUMISSION",
                 "LABORATIONDUPRIX",
+                "LABORATIONETPRSENTATIONDELASOUMISSION",
                 "LABORATIONPRSENTATIONDELASOUMISSION",
+                "LAFINDUCONTRATNEDGAGEAUCUNEMENTLEPRESTATAIREDESERVICESETLESOUSCONTRACTANTDELEURSOBLIGATIONSETENGAGEMENTSRELATIFSLAPROTECTIONDESRENSEIGNEMENTSPERSONNELSETCONFIDENTIELSLESPRINCIPALESDISPOSITIONSAPPLICABLESSERET",
                 "LAFINDUCONTRATNEDGAGEAUCUNEMENTLEPRESTATAIREDESERVICESLESOUSCONTRACTANTDELEURSOBLIGATIONSENGAGEMENTSRELATIFSLAPROTECTIONDESRENSEIGNEMENTSPERSONNELSCONFIDENTIELSLESPRINCIPALESDISPOSITIONSAPPLICABLESSERET",
                 "LANGUE",
                 "LANGUEDUSAGE",
@@ -315,6 +319,7 @@
                 "LEPRESTATAIREDESERVICESDOITSOUMETTREPARCRITTOUTEQUESTIONOUTOUTEDEMANDEDEMODIFICATIONSRELATIVESAUXDOCUMENTSDAPPELDOFFRESLAPERSONNERESSOURCEDSIGNEAUPLUSTARDLHEURELIMITEDERCEPTIONDESSOUMISSIONS",
                 "LEPRESTATAIREDESERVICESQUIDSIREOBTENIRDESRENSEIGNEMENTSCOMPLMENTAIRESQUITROUVEDESAMBIGUTSDESOUBLISDESCONTRADICTIONSOUQUIADESDOUTESSURLASIGNIFICATIONDUCONTENUDESDOCUMENTSDAPPELDOFFRESDOITSOUMETTRESESQUE",
                 "LEPRESTATAIREDESERVICESSENGAGEENVERSLEMINISTRERESPECTERCHACUNEDESDISPOSITIONSAPPLICABLESAUXRENSEIGNEMENTSPERSONNELSCONFIDENTIELSCIDESSOUSNUMRSQUECESRENSEIGNEMENTSLUISOIENTCOMMUNIQUSDANSLECADREDELARALISA",
+                "LEPRESTATAIREDESERVICESSENGAGEENVERSLEMINISTRERESPECTERCHACUNEDESDISPOSITIONSAPPLICABLESAUXRENSEIGNEMENTSPERSONNELSETCONFIDENTIELSCIDESSOUSNUMRSQUECESRENSEIGNEMENTSLUISOIENTCOMMUNIQUSDANSLECADREDELARALISA",
                 "LEPRSENTDOCUMENTCOMPLTELECAHIERDESCLAUSESADMINISTRATIVESGNRALESCCAGPUBLIPARLESECRTARIATDUCONSEILDUTRSORDANSLESYSTMELECTRONIQUEDAPPELDOFFRESDUGOUVERNEMENTDUQUBECSEAO",
                 "LESCHMADELDOITTRERESPECT",
                 "LESMODALITSDADJUDICATION",
@@ -331,6 +336,7 @@
                 "LISTEDESS",
                 "LISTEDESSOUSCONTRACTANTS",
                 "LOBBYISME",
+                "LOISAPPLICABLESETTRIBUNALCOMPTENT",
                 "LOISAPPLICABLESTRIBUNALCOMPTENT",
                 "LOISRGLEMENTS",
                 "MAINDOEUVRE",
@@ -356,6 +362,7 @@
                 "MODALITSDEXCUTIONDEGESTIONDUMANDAT",
                 "MODALITSDEXCUTIONDEGESTIONDUPROJET",
                 "MODALITSDEXCUTIONENCADRANTLESDEMANDESDESERVICE",
+                "MODALITSDEXCUTIONETDEGESTIONDUMANDAT",
                 "MODALITSDUSUIVIDEXCUTION",
                 "MODALITSENCADRANTUNEDEMANDEDESERVICE",
                 "MODALITSRELATIVESLEXCUTIONDESTRAVAUX",
@@ -374,8 +381,10 @@
                 "NONRECONDUCTION",
                 "NONRENONCIATION",
                 "NONRESPONSABILIT",
+                "NORMESRGLESMODLESGOUVERNEMENTAUXETMINISTRIELS",
                 "NORMESRGLESMODLESGOUVERNEMENTAUXMINISTRIELS",
                 "NOTEFINALERELATIVELAQUALIT",
+                "OBJECTIFSETORIENTATIONSDEMISEENUVRE",
                 "OBJECTIFSORIENTATIONSDEMISEENOEUVRE",
                 "OBJECTIFSORIENTATIONSDEMISEENUVRE",
                 "OBJET",
@@ -405,11 +414,13 @@
                 "PERTE",
                 "PLANDECONTINUIT",
                 "PLUSIEURSREPRSENTANTS",
+                "PNALITDLAISETRETARDS",
                 "PNALITDLAISRETARDS",
                 "PNALITIMPOSERENCASDEREMPLACEMENTDUNERESSOURCEPROPOSEDANSLASOUMISSION",
                 "PNALITPOURLEREMPLACEMENTDUNEPERSONNERESSOURCESTRATGIQUE",
                 "PNALITSADDITIONNELLESIMPOSERENCASDERETARDEXCESSIFLORSDELAFFECTATIONOUDUREMPLACEMENTDUNERESSOURCE",
                 "POIDSDESCRITRES",
+                "POLITIQUEGOUVERNEMENTALERELATIVELEMPLOIETLAQUALITDELALANGUEFRANAISEDANSLADMINISTRATION",
                 "POLITIQUEGOUVERNEMENTALERELATIVELEMPLOILAQUALITDELALANGUEFRANAISEDANSLADMINISTRATION",
                 "PORTE",
                 "PRAMBULE",
@@ -463,6 +474,7 @@
                 "REMBOURSEMENTDEDETTEFISCALE",
                 "REMBOURSEMENTDELADETTEFISCALE",
                 "REMISEDESDOCUMENTSDUMATRIEL",
+                "REMISEDESDOCUMENTSETDUMATRIEL",
                 "REMPLACEMENT",
                 "REMPLACEMENTDUNERESSOURCE",
                 "REMPLACEMENTDUNERESSOURCEENCOURSDEMANDAT",
@@ -592,6 +604,7 @@
                 "VALUATIONDESSOUMISSIONSCONFORMES",
                 "VALUATIONDESSOUMISSIONSPARLECOMITDESLECTION",
                 "VALUATIONDURENDEMENT",
+                "VALUATIONETACCEPTATIONDESTRAVAUX",
                 "VRIFICATION",
                 "VRIFICATIONDELASCURIT",
                 "VRIFICATIONDESSOUSCONTRACTANTSAUREGISTREDESENTREPRISESNONADMISSIBLESAUXCONTRATSPUBLICSRENA",
@@ -603,78 +616,6 @@
     },
     {
         "Code": 2,
-        "Étiquettes": {
-            "Préférée": "Critères d’évaluation",
-            "Équivalentes": [
-                "Critères d’évaluation",
-                "CRITRESDVALUATION"
-            ]
-        },
-        "Usage": "Table des matières",
-        "CléUnique": "Critères d’évaluation"
-    },
-    {
-        "Code": 3,
-        "Étiquettes": {
-            "Préférée": "Envergure / Durée",
-            "Équivalentes": [
-                "Envergure / Durée",
-                "ENVERGUREDUMANDAT",
-                "ENVERGUREDUPROJETTARIF",
-                "ENVERGUREDUPROJETTAUX",
-                "ENVERGUREDUPROJETTAUXJOURNALIER"
-            ]
-        },
-        "Usage": "Table des matières",
-        "CléUnique": "Envergure / Durée"
-    },
-    {
-        "Code": 4,
-        "Étiquettes": {
-            "Préférée": "objet du contrat",
-            "Équivalentes": [
-                "objet du contrat",
-                "OBJETDUCONTRAT"
-            ]
-        },
-        "Usage": "Table des matières",
-        "CléUnique": "objet du contrat"
-    },
-    {
-        "Code": 5,
-        "Étiquettes": {
-            "Préférée": "Ouverture soumissions",
-            "Équivalentes": [
-                "Ouverture soumissions",
-                "LIEUDOUVERTUREPUBLIQUEDESSOUMISSIONS",
-                "",
-                "OUVERTUREDESSOUMISSIONS",
-                "OUVERTUREDESSOUMISSIONSCORONAVIRUSCOVID",
-                "OUVERTUREDESSOUMISSIONSPLUSBASPRIXCONFORME",
-                "OUVERTUREDESSOUMISSIONSQUALITPRIX",
-                "RCEPTIONDESSOUMISSIONS"
-            ]
-        },
-        "Usage": "Table des matières",
-        "CléUnique": "Ouverture soumissions"
-    },
-    {
-        "Code": 6,
-        "Étiquettes": {
-            "Préférée": "Prix",
-            "Équivalentes": [
-                "Prix",
-                "FORMULAIREBORDEREAUDEPRIX",
-                "FORMULAIREBORDEREAUDEPRIXVOLET",
-                "FORMULAIREOFFREDEPRIX",
-                "FORMULAIREOFFREDEPRIXVOLET"
-            ]
-        },
-        "Usage": "Table des matières",
-        "CléUnique": "Prix"
-    },
-    {
-        "Code": 7,
         "Étiquettes": {
             "Préférée": "profils recherchés",
             "Équivalentes": [
@@ -691,5 +632,77 @@
         },
         "Usage": "Table des matières",
         "CléUnique": "profils recherchés"
+    },
+    {
+        "Code": 3,
+        "Étiquettes": {
+            "Préférée": "Critères d’évaluation",
+            "Équivalentes": [
+                "Critères d’évaluation",
+                "CRITRESDVALUATION"
+            ]
+        },
+        "Usage": "Table des matières",
+        "CléUnique": "Critères d’évaluation"
+    },
+    {
+        "Code": 4,
+        "Étiquettes": {
+            "Préférée": "Envergure / Durée",
+            "Équivalentes": [
+                "Envergure / Durée",
+                "ENVERGUREDUMANDAT",
+                "ENVERGUREDUPROJETTARIF",
+                "ENVERGUREDUPROJETTAUX",
+                "ENVERGUREDUPROJETTAUXJOURNALIER"
+            ]
+        },
+        "Usage": "Table des matières",
+        "CléUnique": "Envergure / Durée"
+    },
+    {
+        "Code": 5,
+        "Étiquettes": {
+            "Préférée": "Prix",
+            "Équivalentes": [
+                "Prix",
+                "FORMULAIREBORDEREAUDEPRIX",
+                "FORMULAIREBORDEREAUDEPRIXVOLET",
+                "FORMULAIREOFFREDEPRIX",
+                "FORMULAIREOFFREDEPRIXVOLET"
+            ]
+        },
+        "Usage": "Table des matières",
+        "CléUnique": "Prix"
+    },
+    {
+        "Code": 6,
+        "Étiquettes": {
+            "Préférée": "Ouverture soumissions",
+            "Équivalentes": [
+                "Ouverture soumissions",
+                "LIEUDOUVERTUREPUBLIQUEDESSOUMISSIONS",
+                "OUVERTUREDESSOUMISSIONS",
+                "OUVERTUREDESSOUMISSIONSCORONAVIRUSCOVID",
+                "OUVERTUREDESSOUMISSIONSPLUSBASPRIXCONFORME",
+                "OUVERTUREDESSOUMISSIONSQUALITPRIX",
+                "RCEPTIONDESSOUMISSIONS",
+                ""
+            ]
+        },
+        "Usage": "Table des matières",
+        "CléUnique": "Ouverture soumissions"
+    },
+    {
+        "Code": 7,
+        "Étiquettes": {
+            "Préférée": "objet du contrat",
+            "Équivalentes": [
+                "objet du contrat",
+                "OBJETDUCONTRAT"
+            ]
+        },
+        "Usage": "Table des matières",
+        "CléUnique": "objet du contrat"
     }
 ]

@@ -11,6 +11,10 @@
 #
 
 import json
+import csv
+
+FICHIER_MATCH = "dictionnaires/table_des_matières.csv";
+FICHIER_RÉFÉRENTIEL = "dictionnaires/référentiel.json";
 
 class Référentiel :
     """
@@ -25,7 +29,7 @@ class Référentiel :
     _codeRéférentiel = 0;
     _nomFichier = "référentiel.json"
     
-    def __init__(self, pNomFichier = "référentiel.json") :
+    def __init__(self, pNomFichier = FICHIER_RÉFÉRENTIEL) :
         """
             Charge les fichiers de références
         """
@@ -43,7 +47,13 @@ class Référentiel :
         """
             Définit le tri pour l'environnement technologique
         """
-        return e[e["CléUnique"]]
+        cléDisponible = None;
+        try :
+            cléDisponible = e[e["CléUnique"]]
+        except KeyError :
+            cléDisponible = e["Étiquettes"]["Préférée"]
+            
+        return cléDisponible
         
     def consolideTermes(self, pUsage) :
         liste = list();
@@ -91,6 +101,16 @@ class Référentiel :
         entrée["CléUnique"] = pCléUnique;
         self.référentiel.append(entrée);
         return(entrée);
+        
+    def indiquerTermeAClasser(self, entrée, clé, fichier=FICHIER_MATCH) :
+        """
+            Inscrire un terme à classer dans le fichier CSV prévu.
+            
+        """
+        with open(fichier, 'a', newline='') as csvfile:
+            éditeur = csv.writer(csvfile, delimiter=';', quotechar='"')
+            éditeur.writerow([entrée, clé, None]);
+        
         
     def enregistreJson(self) :
         with open(self._nomFichier, 'w', encoding='utf-8') as f:

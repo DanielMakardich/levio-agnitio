@@ -25,18 +25,38 @@ from pdfminer.layout import LTTextBoxHorizontal, LTRect
 
 import string
 
+from extraireAO.pdfTexte.référentiel import Référentiel
+
+
 class Document :
     """
         Classe qui encapsule le document PDF lu.  Il offre différents services pour extraire le texte, la table 
-        des matières, ainsi que les sections utiles à analyser.
+        des matières, ainsi que les sections utiles à analyser.  
+        
+        Le pricipal facteur de performant de cette classe tient au fait que toutes les sections du document n'ont
+        pas le même intérêt.  La classe vérifie dans le référentiel quelles sont les notions qui doivent attirer 
+        notre attention.
         
         Attributs importants :
+        ----------------------
             texte - un tableau ordonné des lignes de textes extraits du fichier pdf.
             table - La table des matières.
             
-        D'autres attributs sont également disponibles, mais idéalement les considérer privés.
+        Méthodes importantes :
+        ----------------------
+            hash                - Permet de "passer à la moulinex" une chaîne de caractère de manière 
+                                  à la rendre "comparable"
+            obtientSection      - Obtenir le texte d'une section en fonction d'une entrée de la table des matières.
+            
+        D'autres attributs et méthodes sont également disponibles, mais idéalement les considérer privés.
     """
+    USAGE = "Table des matières";
+    
     def __init__(self, pFichier) :
+        # -- Charger le référentiel
+        self.référentiel = Référentiel("dictionnaires/référentiel.json");
+        
+        # -- Procédons à l'extraction du document en mémoire et au traitement de l'information qui nous intéresse.
         fp = open('{0}'.format(pFichier), 'rb')
         parser = PDFParser(fp)
         self.document = PDFDocument(parser)
@@ -56,7 +76,7 @@ class Document :
         """
         chaîne = "";
         
-        chaîneNette = pÉtiquette.upper().strip();
+        chaîneNette = pÉtiquette.strip().upper().replace(" ET ", "").replace("ANNEXE", "");
         for lettre in chaîneNette :
             if lettre in string.ascii_letters :
                 chaîne += lettre.upper();
@@ -64,9 +84,36 @@ class Document :
             return(chaîneNette.strip().upper());
         return(chaîne);
         
-    def extraitTableMatières(self) :
+    def étiquetteEntréeTableMatière(self, entréeTableMatières, entréeHashée) :
         """
-            Extrait la table des matières du document lorsque disponible.
+            Recherche l'étiquette de l'entrée de la table des matières.  Si on la retrouve pas produire une question
+            que l'humain devra répondre pour apprendre et procéder, la prochaine fois, automatiquement à l'occurrence.
+        """
+        étiquette = None;
+        
+        termes = self.référentiel.retourneTerme(pÉtiquette=entréeHashée, pUsage=Document.USAGE);
+        if termes is not None :
+            étiquette = termes["Étiquettes"]["Préférée"];
+        else :
+            # TODO : Énoncer une question pour apprendre et procéder la prochaine fois au traitement automatique de l'entrée.
+            self.référentiel.indiquerTermeAClasser(entréeTableMatières, entréeHashée);
+            
+        return(étiquette);
+        
+    def devineTablematières(self) :
+        """
+            À défaut que le fichier PDF n'ait définit formellement une table des matières... on devine quand même.
+        """
+        entrées = list();
+        
+        # TODO : Partir du référentiel et rechercher les éléments dans les 
+        
+        
+        return(entrées);
+        
+    def exploiteTableMatièresFormelle(self) :
+        """
+            Des fois, les gens génèrent une table des matières formelles lorsqu'ils génère des PDF...
         """
         entrées = list();
         
@@ -79,6 +126,10 @@ class Document :
                 entrée["niveau"] = level;
                 entrée["title"] = title;
                 entrée["hash"] = self.hash(title);
+                
+                # --- Obtenons le libellé préféré (ou formellement reconnu) du dictionnaire.
+                entrée["étiquette"] = self.étiquetteEntréeTableMatière(entrée["title"], entrée["hash"]);
+                
                 entrée["dest"] = dest;
                 entrée["action"] = a;
                 entrée["se"] = se;
@@ -91,6 +142,18 @@ class Document :
                 entrées.append(entrée);
         except PDFNoOutlines :
             entrées = None;
+            
+        return(entrées);
+        
+    def extraitTableMatières(self) :
+        """
+            Extrait la table des matières du document lorsque disponible.
+        """
+        # -- Donnons la chance à ceux qui ont fait une belle table des matières formelle dans leur PDF.
+        entrées = self.exploiteTableMatièresFormelle();
+        # -- S'ils n'ont pas fait le travail ... alors devinons..
+        if entrées is None :
+            entrées = devineTablematières();
             
         return(entrées);
             
