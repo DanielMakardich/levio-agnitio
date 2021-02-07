@@ -107,7 +107,7 @@ class Référentiel :
             Inscrire un terme à classer dans le fichier CSV prévu.
             
         """
-        with open(fichier, 'a', newline='') as csvfile:
+        with open(fichier, 'a', encoding='utf-8', newline='') as csvfile:
             éditeur = csv.writer(csvfile, delimiter=';', quotechar='"')
             éditeur.writerow([entrée, clé, None]);
         
