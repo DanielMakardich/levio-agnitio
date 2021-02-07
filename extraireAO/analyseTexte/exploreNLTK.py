@@ -1,3 +1,4 @@
+from _typeshed import NoneType
 import spacy
 
 from spacy import displacy
@@ -5,45 +6,58 @@ from terminaltables import AsciiTable
 from extraireAO.pdfTexte.document import Document
 
 nlp = spacy.load("fr_core_news_sm")
-d = Document("Sources/700 001 429 Gestion de projets.pdf")
 
-texte = d.obtientSection(d.table[10])
-print(texte)
+# Dictionnaire utilisé pour élargir la définition du mot-clé
 
-# Dictionnaire utilisé pour définir 
-texte = nlp(texte)
+motCle = {'client': ['client, publié par, ministère, Revenu Québec'], 'contrat': [
+    'appel d\'offre, offre, soumission']}
+
+# EXTRAIRE LE TEXTE À ÉVALUER
+
+def obtenirTexte(path, num_section):
+    doc = Document(path)    
+    if doc.table is not None:
+        texte = doc.obtientSection(doc.table[num_section])    
+        print(texte)
+        return texte
+    return None
+
+# UTILITÉS
+
+def chercheDict(dictionaire, valeur):
+    for k in dictionaire:
+        for v in dictionaire[k].upper():
+            if valeur.upper() in v:
+                return k
+    return None
+
+# OBTENIR LES CLIENTS
+
+def obtenirClient(texte, num_section):
+    # Initialiser une table pour la sortie et le récupérer le texte
+    table_client = [ ['Nom Client', 'Lab)el', 'Phrase', 'Index phrase', 'Index section'] ]
+   
+    # Tokeniser le texte
+    texte = nlp(texte)
+  
+    # Loop sur phrase et par mot pour retourner les entités détectés
+    num_phrase = 0
+    for phrase in texte.sents:
+        num_phrase = + 1
+        for mot in phrase.ents:
+            if (mot.label_ == "" or chercheDict(motCle, mot) != None):
+                table_client.append([mot, phrase.text, mot.label_, num_phrase, num_section])
+    table = AsciiTable(table_client)
+    print(table.table)
+
+# OBTENIR LES OBJECTIFS/BUTS
 
 
-table_data = [
-    ['Mot', 'lemma', 'pos', 'dep', 'isStop']
-]
-
-# Récupérer le mot, lemma, pos du mot et si le mot est un stop word
+# OBTENIR LES DATES IMPORTANTES
 for phrase in texte.sents:
     for mot in phrase:
-        table_data.append([mot, mot.lemma_, mot.pos_, mot.dep_, mot.is_stop])
-        if (mot.lemma_.upper == "heure"):
-            print (phrase)
+        if (mot.lemma_ == "heure"):
+            print(phrase)
 
 
-# index=0
-# chunk = ""
-# previousChunk = " "
-
-# for chunk in texte_durée.noun_chunks:
-#     index += 1
-#     print(chunk.text)
-#     if(table_data[index][4] == "False" and chunk != previousChunk):
-#         table_data[index].append(chunk.text)
-#         print("CURR CHUNK: " + chunk.text)
-#         print("PREV CHUNK: " + previousChunk.text)
-
-#     previousChunk = chunk
-    
-
-    
-table = AsciiTable(table_data)
-
-print(table.table)
-
-displacy.serve(texte, style="dep")
+displacy.serve(texte, style="dep", page="true")
