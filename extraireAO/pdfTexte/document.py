@@ -27,7 +27,8 @@ import string
 
 class Document :
     """
-        Classe qui encapsule le document PDF lu.  Il offre différents services pour extraire le texte, la table des matières, etc.
+        Classe qui encapsule le document PDF lu.  Il offre différents services pour extraire le texte, la table 
+        des matières, ainsi que les sections utiles à analyser.
         
         Attributs importants :
             texte - un tableau ordonné des lignes de textes extraits du fichier pdf.
