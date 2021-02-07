@@ -84,6 +84,41 @@ class Document :
             return(chaîneNette.strip().upper());
         return(chaîne);
         
+    def thèmesTrouvés(self) :
+        """
+            Sort la liste des thèmes qui ont pu être trouvés
+        """
+        thèmes = list();
+        indexThème = list();
+        
+        for énoncé in self.table :
+            if énoncé["étiquette"] not in indexThème :
+                indexThème.append(énoncé["étiquette"]);
+                
+                thème = dict();
+                thème["étiquette"] = énoncé["étiquette"]
+                thème["sections"] = list();
+                thème["sections"].append(énoncé);
+                thèmes.append(thème);
+            else :
+                for item in thèmes :
+                    if item["étiquette"] == énoncé["étiquette"] :
+                        item["sections"].append(énoncé);
+                        break;
+                        
+        return(indexThème, thèmes);
+        
+    def trouveSectionsSelonThème(self, étiquetteThème) :
+        """
+            Un thème désigne le sujet qui est recherché dans le document.  Le référentiel désigne le thème comme un
+            libellé préféré.  
+        """
+        index, thèmes = self.thèmesTrouvés();
+        for thème in thèmes :
+            if thème["étiquette"] == étiquetteThème :
+                return thème["sections"];
+        return None;
+        
     def étiquetteEntréeTableMatière(self, entréeTableMatières, entréeHashée) :
         """
             Recherche l'étiquette de l'entrée de la table des matières.  Si on la retrouve pas produire une question
@@ -95,7 +130,7 @@ class Document :
         if termes is not None :
             étiquette = termes["Étiquettes"]["Préférée"];
         else :
-            # TODO : Énoncer une question pour apprendre et procéder la prochaine fois au traitement automatique de l'entrée.
+            # Énoncer une question pour apprendre et procéder la prochaine fois au traitement automatique de l'entrée.
             self.référentiel.indiquerTermeAClasser(entréeTableMatières, entréeHashée);
             
         return(étiquette);
@@ -191,7 +226,7 @@ class Document :
                     maxEntrée = entrée
         return(maxEntrée);
         
-    def obtientSection(self, entréeTableMatière) :
+    def _obtientSection(self, entréeTableMatière) :
         """
             Retourne le "texte" de la section indiquée par une entrée de la table des matières
         """
@@ -206,3 +241,13 @@ class Document :
             return(texte)
         else :
             return (None);
+            
+    def obtientSection(self, thème) :
+        """
+            Retourne le "texte" de la section indiquée par le thème choisi
+        """
+        texte = "";
+        sections = self.trouveSectionsSelonThème(thème);
+        for section in sections :
+            texte += "\n" + self._obtientSection(section);
+        return(texte);
