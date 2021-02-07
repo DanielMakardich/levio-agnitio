@@ -101,6 +101,7 @@ with open('Transforme.csv', 'w') as csvfile :
 
 from extraireAO.pdfTexte.document import *
 d = Document("Sources/700 001 429 Gestion de projets.pdf")
+index, thèmes = d.thèmesTrouvés()
 d.obtientSection('Ouverture soumissions');
 
 
