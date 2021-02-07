@@ -104,3 +104,8 @@ d = Document("Sources/700 001 429 Gestion de projets.pdf")
 d.obtientSection(d.table[1])
 
 
+from extraireAO.pdfTexte.dimension import *
+chargerDictionnaire(r, "Table des matières", "dictionnaires/table_des_matières.csv");
+r.enregistreJson()
+
+

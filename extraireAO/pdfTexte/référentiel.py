@@ -1,3 +1,15 @@
+# coding: utf8
+#!/usr/bin/python3
+#
+# 
+#   Module permettant de traiter le dictionnaire des terminologies utilisées
+#
+#   Auteur :        Fabien Tremblay, 2021
+#   Modificateur (s) Date       Sujet de la modification
+#   ================ ========== ===============================================
+#
+#
+
 import json
 
 class Référentiel :
@@ -13,10 +25,12 @@ class Référentiel :
     _codeRéférentiel = 0;
     _nomFichier = "référentiel.json"
     
-    def __init__(self) :
+    def __init__(self, pNomFichier = "référentiel.json") :
         """
             Charge les fichiers de références
         """
+        self._nomFichier = pNomFichier;
+        
         try :
             with open(self._nomFichier) as data_file:
                 self.référentiel = json.load(data_file)
